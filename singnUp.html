@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<head><title>Formulario</title>
+ <link rel="stylesheet" type="text/css" href="http://www.w3.org/css/officeFloats.css" />
+ <style type="text/css">
+      body {
+		align:center;
+		text-align:center;
+        font:  oblique bold 120% cursive; 
+        color: white;
+        background-color:  #d12a32; 
+      }
+    
+    </style>
+ <script type="text/javascript">
+function ikusBalioak(){
+var sAux="";
+var frm=document.getElementById("erregistro");
+for(i=1;i<frm.elements.length;i++){
+sAux +="IZENA: " + frm.elements[i].name+"  ";
+sAux +="BALIOA: " + frm.elements[i].value+"\n";
+}
+alert(sAux);
+}
+</script>
+
+</head>
+<body >
+ <form id="erregistro" name="erregistro" onSubmit="ikusBalioak()" id="erregistro" >
+ <br></br>
+ <p> Izen-Abizenak: <input type="text" name="izena" value="" id="1" required  />(*)</p>
+ <p> Eposta Elektronikoa: <input type="text" name="eposta" value="" id="2" placeholder="example@youremail.com" required/>(*)</p>
+ <p> Pasahitza: <input type="password" name="pasahitza" value="" id="3" required/>(*)</p>
+ <p> Telefono zenbakia: <input type="text" name="tel" value="" id="4" required/>(*)</p>
+ <p> Espezialitatea: <select name="espezialitatea"id="5">    
+       <option value="Software" selected="selected">Software</option>
+       <option value="Hardware">Hardware</option>
+       <option value="Konputazioa">Konputazioa</option>
+   </select> (*)</p>
+ <p> Interesa duzun teknologiak eta erremintak:</br><textarea name="comentarios" rows="10" cols="40"id="6"></textarea></p>
+
+
+ 
+  <br/>
+ 
+  <input type="submit" value="Bidali" />
+</form>
+ 
+</body>
+</html>
+
