@@ -9,43 +9,133 @@
 		text-align:center;
         font:  oblique bold 120% cursive; 
         color: white;
-        background-color:  #d12a32; 
+        background-color:  #0B610B; 
       }
-    
-    </style>
+    LEGEND{align:center;
+		text-align:center;
+        font:  oblique bold 150% cursive; 
+        color: white;
+		border-radius:100px;
+        background-color:  #0B3B0B; }
+ </style>
  <script type="text/javascript">
+ function begiratu(){
+	if(balidatuForm()){
+		ikusBalioak();
+		return true;
+	}
+	return false;
+ }
 function ikusBalioak(){
-var sAux="";
-var frm=document.getElementById("erregistro");
-for(i=1;i<frm.elements.length;i++){
-sAux +="IZENA: " + frm.elements[i].name+"  ";
-sAux +="BALIOA: " + frm.elements[i].value+"\n";
+	var sAux="";
+	var frm=document.getElementById("erregistro");
+		for(i=1;i<frm.elements.length;i++){
+			sAux +="IZENA: " + frm.elements[i].name+"  ";
+			sAux +="BALIOA: " + frm.elements[i].value+"\n";
+		}
+	alert(sAux);
 }
-alert(sAux);
+
+function luzeera(){
+	if(document.getElementById("3").value.length<6 && document.getElementById("3").value!=""){
+	alert("Pasahitzak gutxienez 6 karaktere!");
+	return false;
+	}
+	return true;
+}
+
+function luzeeraTelefono(){
+	if(document.getElementById("4").value.length==9 ||document.getElementById("4").value==""){
+			return true;
+	}else{
+	alert("Telefono zenbakiak 9 zenbaki behar ditu!");
+	return false;
+	}
+}
+function begiratuIzenAbizen(){
+	var balioa=document.getElementById("1").value;
+	var hitzenArray=balioa.split(" ")
+	if(hitzenArray.length==3 || document.getElementById("1").value==""){
+			return true;
+	}else{alert("Izen bat eta bi abizen sartu behar dira!")
+		return false;}
+}
+
+function begiratuIzenAbizen2(){
+	var er=new RegExp(/^[A-B]{1}[a-z]{1,}\s[A-B]{1}[a-z]{1,}\s[A-B]{1}[a-z]{1,}/);
+	var balioa=document.getElementById("1").value;
+	if(er.test(balioa)||balioa==""){
+			return true;
+	}else{alert("Izen bat eta bi abizen sartu behar dira! Gogoratu maiuskulak!")
+		return false;}
+}
+
+function begiratuEmail(){
+	var er=new RegExp(/^[a-z]{1,}\d{3}@ikasle\.ehu\.(eus|es)$/);
+	var balioa=document.getElementById("2").value;
+	if(er.test(balioa)||balioa==""){
+			return true;
+	}else{alert("Emaila ez duzu ondo sartu! Gogoratu: example000@ikasle.ehu.eus/es")
+		return false;}
+}
+function balioDu(e){
+    tekla = (document.all) ? e.keyCode : e.which;
+    if (tekla==8){
+        return true;
+    }
+    var er =new RegExp("[0-9]");
+    teklaFinala = String.fromCharCode(tekla);
+    return er.test(teklaFinala);
+}
+
+function balidatuForm() {
+	var sAux="";
+    var frm=document.getElementById("erregistro");
+	for(i=0;i<5;i++){
+		sAux=frm.elements[i].value;
+		if (sAux == "") {
+			alert("Parametroak sartu hurrengo gunean: "+frm.elements[i].name);
+			return false;
+		}
+	}
+	return true;
 }
 </script>
 
 </head>
 <body >
- <form id="erregistro" name="erregistro" onSubmit="ikusBalioak()" id="erregistro" >
- <br></br>
- <p> Izen-Abizenak: <input type="text" name="izena" value="" id="1" required  />(*)</p>
- <p> Eposta Elektronikoa: <input type="text" name="eposta" value="" id="2" placeholder="example@youremail.com" required/>(*)</p>
- <p> Pasahitza: <input type="password" name="pasahitza" value="" id="3" required/>(*)</p>
- <p> Telefono zenbakia: <input type="text" name="tel" value="" id="4" required/>(*)</p>
- <p> Espezialitatea: <select name="espezialitatea"id="5">    
-       <option value="Software" selected="selected">Software</option>
-       <option value="Hardware">Hardware</option>
-       <option value="Konputazioa">Konputazioa</option>
-   </select> (*)</p>
- <p> Interesa duzun teknologiak eta erremintak:</br><textarea name="comentarios" rows="10" cols="40"id="6"></textarea></p>
 
-
- 
-  <br/>
-    Igo Argazkia: <input type="file" name="img">
- 
-  <input type="submit" value="Bidali" />
+<form id="erregistro" name="erregistro" >
+		<FIELDSET ID="tituloa"><legend>SIGN UP</legend><FIELDSET ID="datuak">
+		<legend>DATU PERTSONALAK</legend>
+			Izen-Abizenak:<input type="text" name="Izen-Abizenak" value="" id="1"  onblur="begiratuIzenAbizen2()"/>(*)
+			<BR>
+			Eposta Elektronikoa:<input type="text" name="Eposta Elektronikoa" value="" id="2" placeholder="example000@ikasle.ehu.eus/es" onblur="begiratuEmail()"/>(*)
+			<BR>
+			Pasahitza:<input type="password" name="Pasahitza"   id="3" onblur="return luzeera()"/>(*)
+			<BR>
+			Telefono zenbakia:<input type="text" name="Telefono zenbakia" maxlength="9" value="" id="4" onkeypress="return balioDu(event)" onblur="luzeeraTelefono()"/>(*)
+			<BR>
+			Igo Argazkia: <input type="file" name="img" id="7">
+		</FIELDSET>
+		<FIELDSET ID="Espezialitatea">
+		<legend>Espezialitatea: </legend>	
+				<select name="Espezialitatea" id="5">    
+					<option value="Software" selected="selected">Software</option>
+					<option value="Hardware">Hardware</option>
+					<option value="Konputazioa">Konputazioa</option>
+					<option value="Besterik" >Besterik</option>
+				</select> (*)
+		</FIELDSET>
+		<FIELDSET ID="gehigarria">
+			<legend>Interesa dituzun teknologiak eta erremintak: </legend>
+				<textarea name="comentarios" rows="10" cols="40" id="6"></textarea>
+				<BR>
+			
+		</FIELDSET>
+				<input type="submit" value="Bidali" onclick="return begiratu()" />
+				<br>
+		<SPAN CLASS="ATZERA" ><A HREF="LAYOUT.HTML">ATZERA JOAN</a></span></FIELDSET>
 </form>
  
 </body>

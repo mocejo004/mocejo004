@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Formulario</title>
+ <link rel="stylesheet" type="text/css" href="http://www.w3.org/css/officeFloats.css" />
+ <style type="text/css">
+    
+ </style>
+ <script type="text/javascript">
+ function begiratu(){
+ alert("begiratzen....");
+	if(balidatuForm()){
+		ikusBalioak();
+		return true;
+	}
+	return false;
+ }
+function ikusBalioak(){
+var sAux="";
+var frm=document.getElementById("erregistro");
+	for(i=1;i<frm.elements.length;i++){
+		sAux +="IZENA: " + frm.elements[i].name+"  ";
+		sAux +="BALIOA: " + frm.elements[i].value+"\n";
+		
+	}
+alert(sAux);
+}
+function balidatuForm() {
+	var sAux="";
+    var frm=document.getElementById("erregistro");
+	for(i=0;i<frm.elements.length;i++){
+		sAux=frm.elements[i].value;
+		if (sAux == ""||sAux=null) {
+			alert("Parametroak sartu hurrengo gunean: "+frm.elements[i].name);
+			return false;
+		}
+	}
+	return true;
+}
+ function valida(e){
+    tecla = (document.all) ? e.keyCode : e.which;
+    if (tecla==8){
+        return true;
+    }
+    var patron =new RegExp("[0-9]");
+    tecla_final = String.fromCharCode(tecla);
+    return patron.test(tecla_final);
+}
+
+function balidatuForm() {
+	var sAux="";
+    var frm=document.getElementById("erregistro");
+	for(i=0;i<frm.elements.length;i++){
+		sAux=frm.elements[i].value;
+		if (sAux ==" "||sAux==null) {
+			alert("Parametroak sartu hurrengo gunean: "+frm.elements[i].name);
+			return false;
+		}
+	}
+	return true;
+}
+</script>
+
+</head>
+<body> 
+<FORM name="erregistro" id="erregistro"  onSubmit="return begiratu()" >
+
+ <FIELDSET>
+  <LEGEND>DATU PERTSONALAK</LEGEND>
+  IZENA-ABIZENAK: <INPUT name="izena" type="text" id="1" >
+  TELEFONOA: <INPUT name="abizena" type="text" id="2" onSubmit="return begiratu()">
+  EPOSTA: <INPUT name="eposta" type="text" placeholder="example000@ikasle.ehu.eus" id="3">
+  PASAHITZA: <INPUT name="pasahitza" type="password" id="4">
+  
+  
+
+ </FIELDSET>
+ <FIELDSET  onSubmit="return begiratu()">
+  <LEGEND>ESPEZIALITATEA</LEGEND>
+  <select name="espezialitatea" id="5">    
+       <option value="Software" selected="selected">Software</option>
+       <option value="Hardware">Hardware</option>
+       <option value="Konputazioa">Konputazioa</option>
+	   <option value="Besterik">Besterik</option>
+   </select> 
+ 
+ </FIELDSET>
+ <FIELDSET  onSubmit="return begiratu()">
+  <LEGEND>INFORMAZIO GEHIGARRIA</LEGEND>
+ 
+<p>Zuri buruzko zerbait gehiago kontatu</p>
+   <TEXTAREA name="medicacion_actual" rows="20" cols="50" tabindex="40" id="6"></TEXTAREA>
+   <p>	Igo Argazkia: 
+				<input type="file" name="img" id="7">
+			</p>
+ </FIELDSET>
+</FORM>
+<p>	<input type="submit" value="Bidali"/>	</p>
+<SPAN CLASS="ATZERA"><A HREF="LAYOUT.HTML">ATZERA JOAN</a></span>
+</body>
+</html>
