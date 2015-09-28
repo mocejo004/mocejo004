@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Formulario</title>
+<link href="http://www.w3.org/css/officeFloats.css" type="text/css" rel="stylesheet">
+
+
+<style type="text/css">
+.thumb{
+     height: 300px;
+     border: 1px solid #000;
+     margin: 10px 5px 0 0;
+}
+
+      body {
+		align:center;
+		text-align:center;
+        font:  oblique bold 120% cursive; 
+        color: white;
+        background-color:  #0B610B; 
+      }
+    LEGEND{align:center;
+		text-align:center;
+        font:  oblique bold 150% cursive; 
+        color: white;
+		border-radius:100px;
+        background-color:  #0B3B0B; }
+ 
+</style>
+<script type="text/javascript">
+
+
+
+ function begiratu(){
+	if(balidatuForm()){
+		ikusBalioak();
+		return true;
+	}
+	return false;
+ }
+function ikusBalioak(){
+	var sAux="";
+	var frm=document.getElementById("erregistro");
+		for(i=1;i<frm.elements.length;i++){
+			sAux +="IZENA: " + frm.elements[i].name+"  ";
+			sAux +="BALIOA: " + frm.elements[i].value+"\n";
+		}
+	alert(sAux);
+}
+
+function luzeera(){
+	if(document.getElementById("3").value.length<6 && document.getElementById("3").value!=""){
+	alert("Pasahitzak gutxienez 6 karaktere!");
+	return false;
+	}
+	return true;
+}
+
+function luzeeraTelefono(){
+	if(document.getElementById("4").value.length==9 ||document.getElementById("4").value==""){
+			return true;
+	}else{
+	alert("Telefono zenbakiak 9 zenbaki behar ditu!");
+	return false;
+	}
+}
+function begiratuIzenAbizen(){
+	var balioa=document.getElementById("1").value;
+	var hitzenArray=balioa.split(" ")
+	if(hitzenArray.length==3 || document.getElementById("1").value==""){
+			return true;
+	}else{alert("Izen bat eta bi abizen sartu behar dira!")
+		return false;}
+}
+
+function begiratuIzenAbizen2(){
+	var er=new RegExp(/^[A-Z]{1}[a-z]{1,}\s[A-Z]{1}[a-z]{1,}\s[A-Z]{1}[a-z]{1,}$/);
+	var balioa=document.getElementById("1").value;
+	if(er.test(balioa)||balioa==""){
+			return true;
+	}else{alert("Izen bat eta bi abizen sartu behar dira! Gogoratu maiuskulak!")
+		return false;}
+}
+
+function begiratuEmail(){
+	var er=new RegExp(/^[a-z]{1,}\d{3}@ikasle\.ehu\.(eus|es)$/);
+	var balioa=document.getElementById("2").value;
+	if(er.test(balioa)||balioa==""){
+			return true;
+	}else{alert("Emaila ez duzu ondo sartu! Gogoratu: example000@ikasle.ehu.eus/es")
+		return false;}
+}
+function balioDu(e){
+    tekla = (document.all) ? e.keyCode : e.which;
+    if (tekla==8){
+        return true;
+    }
+    var er =new RegExp("[0-9]");
+    teklaFinala = String.fromCharCode(tekla);
+    return er.test(teklaFinala);
+}
+
+function balidatuForm() {
+	var sAux="";
+    var frm=document.getElementById("erregistro");
+	for(i=0;i<5;i++){
+		sAux=frm.elements[i].value;
+		if (sAux == "") {
+			alert("Parametroak sartu hurrengo gunean: "+frm.elements[i].name);
+			return false;
+		}
+	}
+	return true;
+}
+function ikusi(zein){
+zein.style.display=""
+}
+function eskutatu(){
+document.getElementById("besterikdiv").style.display="none";
+}
+function estekaOn() {
+    var x = document.getElementById("esteka");
+    x.style.fontSize = "25px";           
+    x.style.color = "red"; 
+}
+function estekaOff() {
+    var x = document.getElementById("esteka");
+    x.style.fontSize = "14px";           
+    x.style.color = "blue"; 
+}
+</script>
+ 
+</head>
+<body>
+<form id="erregistro" name="erregistro">
+<fieldset id="tituloa">
+<legend>SIGN UP</legend>
+<fieldset id="datuak">
+<legend>DATU PERTSONALAK</legend>
+Izen-Abizenak:
+<input id="1" type="text" onblur="begiratuIzenAbizen2()" value="" name="Izen-Abizenak">
+(*)
+<br>
+Eposta Elektronikoa:
+<input id="2" type="text" onblur="begiratuEmail()" placeholder="example000@ikasle.ehu.eus/es" value="" name="Eposta Elektronikoa">
+(*)
+<br>
+Pasahitza:
+<input id="3" type="password" onblur="return luzeera()" name="Pasahitza">
+(*)
+<br>
+Telefono zenbakia:
+<input id="4" type="text" onblur="luzeeraTelefono()" onkeypress="return balioDu(event)" value="" maxlength="9" name="Telefono zenbakia">
+(*)
+<br>
+<fieldset id="hautazko">
+<input type="file" id="files" name="files[]" />
+        <br />
+        <output id="list"></output>
+         
+        <script>
+              function archivo(evt) {
+                  var files = evt.target.files; 
+             
+                  
+                  for (var i = 0, f; f = files[i]; i++) {
+                  
+                    if (!f.type.match('image.*')) {
+                        continue;
+                    }
+             
+                    var reader = new FileReader();
+             
+                    reader.onload = (function(theFile) {
+                        return function(e) {
+                         
+                         document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+                        };
+                    })(f);
+             
+                    reader.readAsDataURL(f);
+                  }
+              }
+             
+              document.getElementById('files').addEventListener('change', archivo, false);
+      </script>
+</fieldset>
+</fieldset>
+<fieldset id="Espezialitatea">
+<legend>Espezialitatea: </legend>
+<select name="Espezialitatea" id="5" >
+  <option value="Software" selected="selected" onClick="eskutatu()">Software</option>
+  <option value="Hardware" onClick="eskutatu()">Hardware</option>
+  <option value="Konputazioa" onClick="eskutatu()">Konputazioa</option>
+  <option value="Besterik" onClick="ikusi(besterikdiv)" id="beste">Besterik</option>
+</select>(*)
+<div id="besterikdiv" style="display:none">
+Idatzi zein: <input type="text" name="besterik2" id="3"/>
+</div>
+</fieldset>
+<fieldset id="gehigarria">
+<legend>Interesa dituzun teknologiak eta erremintak: </legend>
+<textarea id="6" cols="40" rows="10" name="comentarios"></textarea>
+<br>
+</fieldset>
+<input type="submit" onclick="return begiratu()" value="Bidali">
+<br>
+<span class="ATZERA">
+<a href="LAYOUT.HTML" id="esteka" onmouseover="estekaOn()" onmouseleave="estekaOff()"> ATZERA JOAN</a>
+</span>
+</fieldset>
+</form>
+</body>
+</html>
