@@ -17,7 +17,7 @@ while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
     echo "\t</tr>\n";
 }
 echo "</table>\n";
-echo'<br>Nahi baduzu,<span><a href="singnUp.html"> beste erabiltzaile bat erregistratu </a></span>ahal dezakezu, edo<span><a href="layout.html"> menu naguzira </a></span>joan ahal zara.';
+echo'<br>Nahi baduzu,<span><a href="singnUp.html"> beste erabiltzaile bat erregistratu </a></span>ahal dezakezu, edo<span><a href="layout.html"> menu nagusira </a></span>joan ahal zara.';
 
 mysql_free_result($result);
 mysql_close($link);

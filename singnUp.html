@@ -81,7 +81,8 @@ function begiratuIzenAbizen2(){
 	var balioa=document.getElementById("1").value;
 	var hitzenArray=[];
 	hitzenArray=balioa.split(" ");
-	
+	if(hitzenArray.length<3){alert("Izen bat eta bi abizen sartu behar dira! Gogoratu maiuskulak!")
+		return false;}
 	hitzenArray.forEach(function(item){if (er2.test(item)){
 		return true;
 	}else{alert("Izen bat eta bi abizen sartu behar dira! Gogoratu maiuskulak!")
