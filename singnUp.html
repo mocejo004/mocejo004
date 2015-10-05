@@ -1,9 +1,17 @@
-
 <!DOCTYPE html>
 <html>
-<head><title>Formulario</title>
- <link rel="stylesheet" type="text/css" href="http://www.w3.org/css/officeFloats.css" />
- <style type="text/css">
+<head>
+<title>Formulario</title>
+<link href="http://www.w3.org/css/officeFloats.css" type="text/css" rel="stylesheet">
+
+
+<style type="text/css">
+.thumb{
+     height: 300px;
+     border: 1px solid #000;
+     margin: 10px 5px 0 0;
+}
+
       body {
 		align:center;
 		text-align:center;
@@ -17,13 +25,19 @@
         color: white;
 		border-radius:100px;
         background-color:  #0B3B0B; }
- </style>
- <script type="text/javascript">
+ 
+</style>
+<script type="text/javascript">
+
+
+
  function begiratu(){
+ if(begiratuIzenAbizen2() && begiratuEmail() && luzeera() && luzeeraTelefono()){
 	if(balidatuForm()){
 		ikusBalioak();
 		return true;
 	}
+}
 	return false;
  }
 function ikusBalioak(){
@@ -62,12 +76,18 @@ function begiratuIzenAbizen(){
 }
 
 function begiratuIzenAbizen2(){
-	var er=new RegExp(/^[A-B]{1}[a-z]{1,}\s[A-B]{1}[a-z]{1,}\s[A-B]{1}[a-z]{1,}/);
+	var er=new RegExp(/^[A-Z]{1}[a-z]{1,}\s[A-Z]{1}[a-z]{1,}\s[A-Z]{1}[a-z]{1,}$/);
+	var er2=new RegExp(/^[A-Z]{1}[a-z]{1,}/);
 	var balioa=document.getElementById("1").value;
-	if(er.test(balioa)||balioa==""){
-			return true;
+	var hitzenArray=[];
+	hitzenArray=balioa.split(" ");
+	
+	hitzenArray.forEach(function(item){if (er2.test(item)){
+		return true;
 	}else{alert("Izen bat eta bi abizen sartu behar dira! Gogoratu maiuskulak!")
-		return false;}
+		return false;}});
+	
+		
 }
 
 function begiratuEmail(){
@@ -100,44 +120,104 @@ function balidatuForm() {
 	}
 	return true;
 }
+function ikusi(zein){
+zein.style.display=""
+}
+function eskutatu(){
+document.getElementById("besterikdiv").style.display="none";
+}
+function estekaOn() {
+    var x = document.getElementById("esteka");
+    x.style.fontSize = "25px";           
+    x.style.color = "red"; 
+}
+function estekaOff() {
+    var x = document.getElementById("esteka");
+    x.style.fontSize = "14px";           
+    x.style.color = "blue"; 
+}
 </script>
-
-</head>
-<body >
-
-<form id="erregistro" name="erregistro" >
-		<FIELDSET ID="tituloa"><legend>SIGN UP</legend><FIELDSET ID="datuak">
-		<legend>DATU PERTSONALAK</legend>
-			Izen-Abizenak:<input type="text" name="Izen-Abizenak" value="" id="1"  onblur="begiratuIzenAbizen2()"/>(*)
-			<BR>
-			Eposta Elektronikoa:<input type="text" name="Eposta Elektronikoa" value="" id="2" placeholder="example000@ikasle.ehu.eus/es" onblur="begiratuEmail()"/>(*)
-			<BR>
-			Pasahitza:<input type="password" name="Pasahitza"   id="3" onblur="return luzeera()"/>(*)
-			<BR>
-			Telefono zenbakia:<input type="text" name="Telefono zenbakia" maxlength="9" value="" id="4" onkeypress="return balioDu(event)" onblur="luzeeraTelefono()"/>(*)
-			<BR>
-			Igo Argazkia: <input type="file" name="img" id="7">
-		</FIELDSET>
-		<FIELDSET ID="Espezialitatea">
-		<legend>Espezialitatea: </legend>	
-				<select name="Espezialitatea" id="5">    
-					<option value="Software" selected="selected">Software</option>
-					<option value="Hardware">Hardware</option>
-					<option value="Konputazioa">Konputazioa</option>
-					<option value="Besterik" >Besterik</option>
-				</select> (*)
-		</FIELDSET>
-		<FIELDSET ID="gehigarria">
-			<legend>Interesa dituzun teknologiak eta erremintak: </legend>
-				<textarea name="comentarios" rows="10" cols="40" id="6"></textarea>
-				<BR>
-			
-		</FIELDSET>
-				<input type="submit" value="Bidali" onclick="return begiratu()" />
-				<br>
-		<SPAN CLASS="ATZERA" ><A HREF="LAYOUT.HTML">ATZERA JOAN</a></span></FIELDSET>
-</form>
  
+</head>
+<body>
+<form action="erregistratu.php" id="erregistro" name="erregistro"  method="POST">
+<fieldset id="tituloa">
+<legend>SIGN UP</legend>
+<fieldset id="datuak">
+<legend>DATU PERTSONALAK</legend>
+Izen-Abizenak:
+<input id="1" type="text" onblur="begiratuIzenAbizen2()" value="" name="IzenAbizenak">
+(*)
+<br>
+Eposta Elektronikoa:
+<input id="2" type="text" onblur="begiratuEmail()" placeholder="example000@ikasle.ehu.eus/es" value="" name="Eposta">
+(*)
+<br>
+Pasahitza:
+<input id="3" type="password" onblur="return luzeera()" name="Pasahitza">
+(*)
+<br>
+Telefono zenbakia:
+<input id="4" type="text" onblur="luzeeraTelefono()" onkeypress="return balioDu(event)" value="" maxlength="9" name="Telefono">
+(*)
+<br>
+<fieldset id="hautazko" >
+<input type="file" id="files" name="files[]" />
+        <br />
+        <output id="list"></output>
+         
+        <script>
+              function archivo(evt) {
+                  var files = evt.target.files; 
+             
+                  
+                  for (var i = 0, f; f = files[i]; i++) {
+                  
+                    if (!f.type.match('image.*')) {
+                        continue;
+                    }
+             
+                    var reader = new FileReader();
+             
+                    reader.onload = (function(theFile) {
+                        return function(e) {
+                         
+                         document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+                        };
+                    })(f);
+             
+                    reader.readAsDataURL(f);
+                  }
+              }
+             
+              document.getElementById('files').addEventListener('change', archivo, false);
+      </script>
+</fieldset>
+</fieldset>
+<fieldset id="Espezialitatea">
+<legend>Espezialitatea: </legend>
+<select name="Espezialitatea" id="5" >
+  <option value="Software" selected="selected" onClick="eskutatu()">Software</option>
+  <option value="Hardware" onClick="eskutatu()">Hardware</option>
+  <option value="Konputazioa" onClick="eskutatu()">Konputazioa</option>
+  <option value="Besterik" onClick="ikusi(besterikdiv)" id="beste">Besterik</option>
+</select>(*)
+<div id="besterikdiv" style="display:none">
+Idatzi zein: <input type="text" name="besterik2" id="3"/>
+</div>
+</fieldset>
+<fieldset id="gehigarria">
+<legend>Interesa dituzun teknologiak eta erremintak: </legend>
+<textarea id="6" cols="40" rows="10" name="comentarios"></textarea>
+<br>
+</fieldset>
+<input type="submit" onclick="return begiratu()" value="Bidali">
+<br>
+<span class="ATZERA">
+<a href="LAYOUT.HTML" id="esteka" onmouseover="estekaOn()" onmouseleave="estekaOff()"> ATZERA JOAN</a>
+</span>
+</fieldset>
+<?php phpinfo(); ?>
+</form>
 </body>
 </html>
-
