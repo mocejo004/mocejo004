@@ -10,7 +10,7 @@ $count=0;
 echo "<table BORDER=1>\n";
 echo "\t\t<td>IZEN-ABIZENAK</td><td>EPOSTA</td><td>PASAHITZA</td><td>TELEFONO ZENBAKIA</td><td>ESPEZIALITATEA</td><td>TEKNOLOGIA ETA ERRAMINTAK</td><td>IRUDIA</td>\t</tr>\n";
 while($erabiltzaile=mysql_fetch_assoc($result)) {
-					$lerroa = "<tr><td>" . $erabiltzaile['Eposta'] . '</td> <td>' . $erabiltzaile['IzenAbizenak'] . '</td><td>' . $erabiltzaile['Pasahitza'] . '</td><td>';
+					$lerroa = "<tr><td>" . $erabiltzaile['IzenAbizenak'] . '</td> <td>' . $erabiltzaile['Eposta'] . '</td><td>' . $erabiltzaile['Pasahitza'] . '</td><td>';
 					$lerroa = $lerroa . $erabiltzaile['Telefono'] . '</td> <td>' . $erabiltzaile['Ezpesialitatea'] . '</td><td>' . $erabiltzaile['comentarios'] . '</td><td>';
 					$lerroa = $lerroa . '<img height="70" width="150" align="middle" src="ErakutziArgazkia.php?id='.$erabiltzaile['Eposta'].'"/>' . '</td></tr>';
 					echo $lerroa;

@@ -6,7 +6,7 @@
         // Make sure the file was sent without errors
         if($_FILES['uploaded_file']['error'] == 0) {
             // Connect to the database
-            $dbLink = new mysqli('127.0.0.1', 'user', 'pwd', 'myTable');
+            $dbLink = new mysqli('127.0.0.1:1234', 'root', '', 'erregistro');
             if(mysqli_connect_errno()) {
                 die("MySQL connection failed: ". mysqli_connect_error());
             }
