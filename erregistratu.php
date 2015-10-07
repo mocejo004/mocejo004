@@ -8,6 +8,9 @@ $Eposta=$_POST["Eposta"];
 $Pasahitza=$_POST["Pasahitza"];
 $Telefono=$_POST["Telefono"];
 $Espezialitatea=$_POST["Espezialitatea"];
+if(strcmp($Espezialitatea,"Besterik")==0){
+	$Espezialitatea=$_POST["besterik2"];
+}
 $comentarios=$_POST["comentarios"];
 $sql="INSERT INTO ERABILTZAILEA(IzenAbizenak,Eposta,Pasahitza,Telefono,Ezpesialitatea,comentarios) VALUES('$IzenAbizenak','$Eposta','$Pasahitza','$Telefono','$Espezialitatea','$comentarios')";
 
