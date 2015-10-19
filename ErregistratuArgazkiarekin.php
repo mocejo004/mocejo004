@@ -21,16 +21,25 @@ $Eposta=$_POST["Eposta"];
 	
 	}
 	$comentarios=$_POST["comentarios"];
-	$sql="INSERT INTO ERABILTZAILEA(IzenAbizenak,Eposta,Pasahitza,Telefono,Ezpesialitatea,comentarios,img) VALUES('$IzenAbizenak','$Eposta','$Pasahitza','$Telefono','$Espezialitatea','$comentarios','$img_edukia_egokituta')";
-
-	$result=mysql_query($sql);
-	if(!$result){
-		echo'Konstultak huts egin du: ' . mysql_error();
-		echo'<br><span><a href="singnUp.html">Atzera bueltatu</a></span>';
+	if ((!filter_var($Eposta,FILTER_VALIDATE_REGEXP,
+		array("options"=>array("regexp"=>"/^[a-z]{1,}\d{3}@ikasle\.ehu\.(eus|es)$/"))) === false) && (!filter_var($Pasahitza,FILTER_VALIDATE_REGEXP,
+		array("options"=>array("regexp"=>"/^.{6,}$/"))) === false)&& (!filter_var($Telefono,FILTER_VALIDATE_REGEXP,
+		array("options"=>array("regexp"=>"/^[0-9]{9}$/"))) === false)&& (!filter_var($IzenAbizenak,FILTER_VALIDATE_REGEXP,
+		array("options"=>array("regexp"=>"/^[A-Z]{1}[a-z]{1,}\s[A-Z]{1}[a-z]{1,}\s[A-Z]{1}[a-z]{1,}$/"))) === false)) {
+			echo("Datuen formatua onartu egin da<br>");
+		$sql="INSERT INTO ERABILTZAILEA(IzenAbizenak,Eposta,Pasahitza,Telefono,Ezpesialitatea,comentarios,img) VALUES('$IzenAbizenak','$Eposta','$Pasahitza','$Telefono','$Espezialitatea','$comentarios','$img_edukia_egokituta')";
+	
+		$result=mysql_query($sql);
+		if(!$result){
+			echo'Konstultak huts egin du: ' . mysql_error();
+			echo'<br><span><a href="singnUp.html">Atzera bueltatu</a></span>';
+		}else{
+			echo'Dena ondo joan da, nahi baduzu<span><a href="IkusiErabiltzaileakArgazkiekin.php"> erabiltzaile lista </a></span>ikus dezakezu.';
+		}
 	}else{
-		echo'Dena ondo joan da, nahi baduzu<span><a href="IkusiErabiltzaileakArgazkiekin.php"> erabiltzaile lista </a></span>ikus dezakezu.';
+		echo("Datuen formatua ez da onartu, beraz ez dira datuak gorde.<br>");
+		echo'<br><span><a href="singnUp.html">Atzera bueltatu</a></span>';
 	}
-
 
 mysql_close($link);
 ?>
