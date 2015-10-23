@@ -29,7 +29,8 @@ if (isset($_POST['click'])){
 				$arg = mysql_query("select IzenAbizenak from ERABILTZAILEA where Eposta='$eposta' and Pasahitza='$pasahitza'") or die(mysql_error());	
 				$row = mysql_fetch_array( $arg );
 				if($row[0]!=null){
-					header('Location:logeatuta.html');
+					setcookie("logeatutakoErab",$eposta);
+					header('Location:InsertQuestion.html');
 				}
 					else{echo "<strong style='color: red;'>Sartutako pasahitza edo izena ez dira egokiak!</strong>";}			
 			}else{

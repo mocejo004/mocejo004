@@ -16,21 +16,6 @@ while($erabiltzaile=mysql_fetch_assoc($result)) {
 					echo $lerroa;
 }
 
-//while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
-    //echo "\t<tr>\n";
-    //foreach ($line as $col_value){
-	//	if($count==6){
-			
-	//		echo '\t\t<td><img height="70" width="150" align="middle" src="IkusArgazkia.php?id='.$erabiltzaile['Eposta'].'"/></td>\n';
-			//echo"\t\t<td> $col_value</td>\n";
-		//	$count=0;
-		//}else{
-		//++$count;
-		//echo "\t\t<td>$col_value</td>\n";
-		//}
-	//}
- //   echo "\t</tr>\n";
-//}
 echo "</table>\n";
 echo'<br>Nahi baduzu,<span><a href="singnUp.html"> beste erabiltzaile bat erregistratu </a></span>ahal dezakezu, edo<span><a href="layout.html"> menu nagusira </a></span>joan ahal zara.';
 
