@@ -30,7 +30,21 @@ if (isset($_POST['click'])){
 				$row = mysql_fetch_array( $arg );
 				if($row[0]!=null){
 					setcookie("logeatutakoErab",$eposta);
-					header('Location:InsertQuestion.html');
+					$sql="INSERT INTO KONEXIOA(Eposta) VALUES('$eposta')";
+					$result=mysql_query($sql);
+					$sql="SELECT MAX(Id) FROM KONEXIOA";
+					$emaitza=mysql_query($sql);
+					if ($row2 = mysql_fetch_row($emaitza)) {
+						$KonexioId=$row2[0];
+					}else{
+						$KonexioId=0;
+					}
+					setcookie("KonexioId",$KonexioId);
+					if(!$result){
+						echo'Konstultak huts egin du, ezin isan da konexioa taulan baliorik gorde: ' . mysql_error();
+					}else{
+						header('Location:InsertQuestion.php');
+					}
 				}
 					else{echo "<strong style='color: red;'>Sartutako pasahitza edo izena ez dira egokiak!</strong>";}			
 			}else{
@@ -44,6 +58,6 @@ if (isset($_POST['click'])){
 ?>
 <br>
 <br>
-<span><a href="layout.html">Atzera joan</a></span>
+<br><input type="button" name="click" onclick = "location='layout.html'" value="Atzera Joan" />
 </body>
 </html>
