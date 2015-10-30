@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<assessmentItems>
+	<assessmentItem complexity="3" subject="Mikologia">
+		<itemBody> 
+			<p>Amanita muskaria zer da?</p>
+		</itemBody>
+		<correctResponse>
+			<value>Perretxikoa</value>
+		</correctResponse>
+	</assessmentItem>
+	<assessmentItem complexity="5" subject="Mikologia">
+		<itemBody>
+			<p>Amanita hilkorrena da:</p>
+		</itemBody>
+		<correctResponse>
+			<value>Phalloides</value>
+		</correctResponse>
+	</assessmentItem>
+<assessmentItem complexity="1" subject="DEFINITUGABEA"><itemBody><p>froga</p></itemBody><correctResponse><value>froga</value></correctResponse></assessmentItem><assessmentItem complexity="1" subject="DEFINITUGABEA"><itemBody><p>froga</p></itemBody><correctResponse><value>froga</value></correctResponse></assessmentItem></assessmentItems>

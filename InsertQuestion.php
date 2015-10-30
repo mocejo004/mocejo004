@@ -11,9 +11,9 @@
 		header("Location:Login.php");
 	}
 	if(isset($_POST['bidali'])){
-		$link = mysql_connect('localhost', 'root', 'root')
-		or die('Ezin isan da konektatu: ' . mysql_error());
-		mysql_select_db('QUIZ') or die('Ezin izan da datu basera konektatu.');	
+		$link= mysql_connect('localhost', 'root', 'root') or die(mysql_error());
+	 Konexioa egiaztatu
+mysql_select_db("QUIZ") or die(mysql_error());
 		function lortuIp(){
 			if ( isset($_SERVER["REMOTE_ADDR"]) )    { 
 				$ip=$_SERVER["REMOTE_ADDR"]; 
@@ -48,27 +48,38 @@
 			echo'Konstultak huts egin du: ' . mysql_error();
 			echo'<br><span><a href="InsertQuestion.php">Atzera bueltatu</a></span>';
 		}else{
-			echo'<a>Galdera ondo gorde da</a><br>';
+				$galderak= simplexml_load_file('galderak.xml');
+					$galdera= $galderak->addChild('assessmentItem');
+					$galdera->addAttribute('complexity', $zailtasuna);
+					$galdera->addAttribute('subject', 'UNDER CONSTRUCTION...');
+					$itemBody=$galdera->addChild('itemBody');
+					$itemBody->addChild('p', $galdera);
+					$correctResponse=$galdera->addChild('correctResponse');
+					$correctResponse->addChild('value', $erantzuna);
+					echo $galderak->asXML('galderak.xml');
+					echo "Ondo txertatu da XML fitxategian:";
 		}
 
 	mysql_close($link);
 	}
 ?>	
-<!Doctype html>	
+<!doctype html>	
 <html>
 <head>
 <title></title>
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 </head>
 <body>
-<form  action="" id="galdera" name="galdera" method="POST" enctype="multipart/form-data">
-Galdera: <br/>
+<form  action="" id="galdera" name="galdera" method="post" enctype="multipart/form-data">
+galdera: <br/>
 <textarea name="galdera" rows="5" cols="40"></textarea><br/>
 <br/>
-Erantzuna:<br/> <input name="erantzuna" size="80"></textarea><br/>
+erantzuna:<br/> <input name="erantzuna" size="80"></textarea><br/>
 <br/>
+<br/>
+Gaia:<br/> <input name="gaia" size="80"></textarea><br/>
 <div>
-Zailtazun maila (1 eta 5 artean):&nbsp
+zailtazun maila (1 eta 5 artean):&nbsp
 <select type="text" name="zailtasuna" >
 <option></option>
 <option>1</option>
