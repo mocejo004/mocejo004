@@ -1,4 +1,5 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="seeQuenstions.xsl"?>
 <assessmentItems>
 	<assessmentItem complexity="3" subject="Mikologia">
 		<itemBody> 
@@ -16,4 +17,4 @@
 			<value>Phalloides</value>
 		</correctResponse>
 	</assessmentItem>
-<assessmentItem complexity="1" subject="DEFINITUGABEA"><itemBody><p>froga</p></itemBody><correctResponse><value>froga</value></correctResponse></assessmentItem><assessmentItem complexity="1" subject="DEFINITUGABEA"><itemBody><p>froga</p></itemBody><correctResponse><value>froga</value></correctResponse></assessmentItem></assessmentItems>
+</assessmentItems>
