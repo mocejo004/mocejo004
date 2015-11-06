@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="seeQuenstions.xsl"?>
+<assessmentItems>
+	<assessmentItem complexity="3" subject="Mikologia">
+		<itemBody> 
+			<p>Amanita muskaria zer da?</p>
+		</itemBody>
+		<correctResponse>
+			<value>Perretxikoa</value>
+		</correctResponse>
+	</assessmentItem>
+	<assessmentItem complexity="5" subject="Mikologia">
+		<itemBody>
+			<p>Amanita hilkorrena da:</p>
+		</itemBody>
+		<correctResponse>
+			<value>Phalloides</value>
+		</correctResponse>
+	</assessmentItem>
+<assessmentItem complexity="" subject=""><itemBody><p/></itemBody><correctResponse><value/></correctResponse></assessmentItem><assessmentItem complexity="" subject=""><itemBody><p/></itemBody><correctResponse><value/></correctResponse></assessmentItem><assessmentItem complexity="" subject="sadfsdafsafdas"><itemBody><p/></itemBody><correctResponse><value>sdfsafsafsa</value></correctResponse></assessmentItem><assessmentItem complexity="" subject="sdfasdfsfsf"><itemBody><p/></itemBody><correctResponse><value>sdfasfsafsa</value></correctResponse></assessmentItem><assessmentItem complexity="1" subject="fgbdbgfbfbf"><itemBody><p/></itemBody><correctResponse><value>gfbbgbdbgf</value></correctResponse></assessmentItem><assessmentItem complexity="" subject="ascascascasca"><itemBody><p/></itemBody><correctResponse><value>ascascascsa</value></correctResponse></assessmentItem><assessmentItem complexity="" subject="adsadasdasdsa"><itemBody><p/></itemBody><correctResponse><value>asdasdasdasd</value></correctResponse></assessmentItem><assessmentItem complexity="1" subject="Informatika"><itemBody><p/></itemBody><correctResponse><value>konputagailuaren alde fisikoa</value></correctResponse></assessmentItem><assessmentItem complexity="3" subject="Informatika"><itemBody><p/></itemBody><correctResponse><value>LOGO</value></correctResponse></assessmentItem><assessmentItem complexity="5" subject="Informatika"><itemBody><p/></itemBody><correctResponse><value>Ongi etorri datu basera</value></correctResponse></assessmentItem><assessmentItem complexity="5" subject="Informatika"><itemBody><p/></itemBody><correctResponse><value>Ongi etorri datu basera</value></correctResponse></assessmentItem><assessmentItem complexity="5" subject="Informatika"><itemBody><p/></itemBody><correctResponse><value>Ongi etorri datu basera</value></correctResponse></assessmentItem></assessmentItems>
